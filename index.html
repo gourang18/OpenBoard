@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBoard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0-10/css/all.css" integrity="sha512-Dj9pt3sZROOuTTs9S89ykGZeu1XQgWKg3DVpu5tZALApsrWdd3tnVjTclUuVONaHM4O8GgCnjSbHlTKXrd2OWg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="options-container">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="tool-container scale-tools">
+        <img src="./New Icons/pencil.png" class="pencil-img">
+        <img src="./New Icons/eraser.png" class="eraser-img">
+        <img src="./New Icons/down-arrow.png" class="download">
+        <img src="./New Icons/photo.png" class="upload-img">
+        <img src="./New Icons/StickyNote.svg" class="sticky-img">
+        
+        <img src="./New Icons/redo.png" class="redo">
+        <img src="./New Icons/undo.png" class="undo">
+    </div>
+    <div class="pencil-container">
+        <div class="pencil-width">
+            <input type="range" min="2" max="10" value="2">
+        </div>
+        <div class="pencil-color-cont">
+            <div class="black pencil-color"></div>
+            <div class="red pencil-color"></div>
+            <div class="blue pencil-color"></div>
+
+        </div>
+    </div>
+    <div class="eraser-cont">
+        <input type="range" min="2" max="10" value="2" class="eraser-width">
+    </div>
+    <canvas></canvas>
+    <script src="tools.js"></script>
+    <script src="canvas.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         body {
+            margin: 0px;
+        }
+
+        .fas {
+            font-size: 2rem;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+        .fas
+        .icon-pallet{
+            height:50px;
+            background-color: rgb(228, 227, 227);
+            width: 800px;
+            margin-left: 100px;
+            /* tools */
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .red {
+            background-color: lightpink;
+            height: 35px;
+            width: 35px;
+            /* curve */
+            border-radius: 50%;
+        }
+        .green {
+            background-color: lightgreen;
+            height: 35px;
+            width: 35px;
+            border-radius: 50%
+        }
+        .blue {
+            background-color: lightblue;
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <div class="icon-pallet">
+    <i class="fas fa-square"></i>
+    <i class="fas fa-grip-lines-vertical"></i>
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+    <i class="fas fa-eraser"></i>
+    <div class="red"></div>
+    <div class="green"></div>
+    <div class="blue"></div>
+
+    </div>
+    
+    
+    <canvas></canvas>
+</body>
+<script>
+    let rectTool = document.querySelector(".fa-square");
+    let lineTool = document.querySelector(".fa-grip-lines-vertical");
+    let canvasBoard=document.querySelector("canvas");
+    
+    
+    canvasBoard.height=window.innerHeight;
+    canvasBoard.width=window.innerWidth;
+    let tool=canvasBoard.getContext("2d");
+    let redColor = document.querySelector(".red");
+    let greenColor = document.querySelector(".green");
+    let blueColor = document.querySelector(".blue");
+    redColor.addEventListener("click", function () {
+        tool.strokeStyle = "lightpink";
+    })
+    greenColor.addEventListener("click", function () {
+        tool.strokeStyle = "lightgreen";
+    })
+    blueColor.addEventListener("click", function () {
+        tool.strokeStyle = "lightblue";
+    })
+
+    let cTool = "rectTool";
+    // tool.fillRect(0 ,0 ,200 ,200);
+    let body=document.querySelector("body");
+    // body.addEventListener("mousedown",function(e){
+    //     let xpos=e.clientX;
+    //     let ypos=e.clientY;
+    //     console.log(xpos,ypos);
+    // })
+    // body.addEventListener("mouseup",function(e){
+    //     let xpos=e.clientX;
+    //     let ypos=e.clientY;
+    //     console.log(xpos,ypos);
+    // })
+    rectTool.addEventListener("click", function () {
+        cTool = "rectTool";
+    })
+    lineTool.addEventListener("click", function () {
+        cTool = "lineTool";
+    })
+    let boardTop = canvasBoard.getBoundingClientRect().top;
+    let boardLeft = canvasBoard.getBoundingClientRect().left;
+    let iX, iY, fX, fY;
+    body.addEventListener("mousedown",
+        function (e) {
+            // alert("mouse was pressed on body");
+            // console.log(e);
+            // let xPos = e.clientX;
+            // let yPos = e.clientY;
+            // console.log(xPos, yPos)
+            iX = e.clientX+boardLeft;
+            iY = e.clientY-boardTop;
+        })
+    body.addEventListener("mouseup", function (e) {
+        // console.log(e);
+        fX = e.clientX+boardLeft;
+        fY = e.clientY-boardTop;
+        let width = fX - iX;
+        let height = fY - iY;
+        if (cTool == "rectTool") {
+            tool.strokeRect(iX, iY, width, height);
+        } else {
+            tool.beginPath();
+            tool.moveTo(iX, iY);
+            tool.lineTo(fX, fY);
+            tool.stroke();
+            //console.log("Pencil tool is pending")
+        }
+    })
+
+</script>
+</html>
